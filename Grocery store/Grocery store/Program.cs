@@ -36,7 +36,7 @@ namespace Grocery_store
 
             Console.WriteLine("Choose an option (1-4)");
             Console.WriteLine("1 - Add a new product to the store");
-            Console.WriteLine("2 - Sell an item");
+            Console.WriteLine("2 - Buy an item");
             Console.WriteLine("3 - Check availability");
             Console.WriteLine("4 - See all items");
 
@@ -56,12 +56,49 @@ namespace Grocery_store
                 Console.Write("Product quantity: ");
                 int qu = int.Parse(Console.ReadLine());
 
-                promtWriter(id, name, cat, pr, qu);
+                PromtWriter(id, name, cat, pr, qu);
             }
 
             else if (option == 2)
             {
+                Console.Write("Product name: ");
+                string prompt = Console.ReadLine();
+                
+                bool found = false;
 
+                foreach (Item item in items)
+                {
+                    if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
+                    {
+                        found = true;
+                        
+                    }
+
+                    if (found)
+                    {
+                        Console.WriteLine("Product exists in the list, how many do you want?");
+                        int amount = int.Parse(Console.ReadLine());
+
+
+                        if (item.Quantity >= amount)
+                        {
+                            Console.WriteLine($"Product exists and the quantity is sufficient and the price is {item.Price * amount}");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not enogh in stock");
+                            break;
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product is not avbailable");
+                        break;
+                    }
+                }
+               
             }
 
             else if (option == 3)
@@ -72,11 +109,11 @@ namespace Grocery_store
             else if (option == 4)
             {
 
-                writeItems();
+                WriteItems();
             }
         }
 
-        static void promtWriter(int productId, string name, string cayegory, double price, int quantity)
+        static void PromtWriter(int productId, string name, string cayegory, double price, int quantity)
         {
             using (StreamWriter writer = new StreamWriter("Products.txt", true))
             {
@@ -84,7 +121,7 @@ namespace Grocery_store
             }
         }
 
-        static void writeItems()
+        static void WriteItems()
         {
             using (StreamReader reader = new StreamReader("Products.txt"))
             {
