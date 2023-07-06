@@ -10,18 +10,26 @@ namespace Grocery_store
 {
     internal class Program
     {
-        static void Main(string[] args)
+        List<Item> items = new List<Item>();
+
+        void Main(string[] args)
         {
             Reader();
 
+            StreamReader streamWriter = new StreamReader("Products.txt");
 
-        }
+            using (streamWriter)
+            {
+                foreach (Item it in items)
+                {
 
-        static void Reader()
+                }
+            }
+
+        void Reader()
         {
             StreamReader streamReader = new StreamReader("Products.txt");
-
-            List<Item> items = new List<Item>();
+           
 
             string line = streamReader.ReadLine();
 
@@ -37,5 +45,7 @@ namespace Grocery_store
             }
             streamReader.Close();
         }
+
+       
     }
 }
