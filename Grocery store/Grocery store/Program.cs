@@ -44,11 +44,15 @@ namespace Grocery_store
             if (option == 1)
             {
                 Console.WriteLine("Enter item information:");
-                
+                Console.Write("ProductId: ");
                 int id = int.Parse(Console.ReadLine());
+                Console.Write("Product name: ");
                 string name = Console.ReadLine();
+                Console.Write("Product category: ");
                 string cat = Console.ReadLine();
+                Console.Write("Product price: ");
                 double pr = double.Parse(Console.ReadLine());
+                Console.Write("Product quantity: ");
                 int qu = int.Parse(Console.ReadLine());
 
                 promtWriter(id, name, cat, pr, qu);
@@ -72,7 +76,7 @@ namespace Grocery_store
 
         static void promtWriter(int productId, string name, string cayegory, double price, int quantity)
         {
-            using (StreamWriter writer = new StreamWriter("Products.txt"))
+            using (StreamWriter writer = new StreamWriter("Products.txt", true))
             {
                 writer.WriteLine($"{productId},{name},{cayegory},{price},{quantity}");
             }
