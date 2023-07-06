@@ -1,6 +1,6 @@
-13579,Pasta,Pantry,0.99,50
+13579,Pasta,Pantry,0.99,30
 24680,Bread,Bakery,2.99,30
-67890,Milk,Dairy,2.49,20
+67890,Milk,Dairy,2.49,18
 97531,Apples,Fruits,1.99,50
 12345,Eggs,Dairy,1.99,100
 23456,Rice,Pantry,3.99,40
@@ -8,4 +8,3 @@
 54321,Yogurt,Dairy,1.49,30
 90876,Tomatoes,Vegetables,0.79,60
 45678,Orange Juice,Beverages,2.99,1512,Pizza,new,9,100
-12,Piza,21,12,12

@@ -68,77 +68,67 @@ namespace Grocery_store
 
                 else if (option == 2)
                 {
-                    Console.Write("Product name: ");
-                    string prompt = Console.ReadLine();
+                Console.Write("Product name: ");
+                string prompt = Console.ReadLine();
 
-                    bool found = false;
+                bool found = false;
 
-                    foreach (Item item in items)
-                    {
-                        if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
-                        {
-                            found = true;
-
-                        }
-
-                        if (found)
-                        {
-                            Console.WriteLine("Product exists in the list, how many do you want?");
-                            int amount = int.Parse(Console.ReadLine());
-
-
-                            if (item.Quantity >= amount)
-                            {
-                                Console.WriteLine($"Product exists and the quantity is sufficient and the price is {item.Price * amount}");
-                                RemoveItemFromFile(item.Name, amount);
-                                break;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Not enogh in stock");
-                                break;
-                            }
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Product is not avbailable");
-                            break;
-                        }
-                    }
-
-                }
-
-                else if (option == 3)
+                foreach (Item item in items)
                 {
-                    Console.Write("Product name: ");
-                    string prompt = Console.ReadLine();
-
-                    bool found = false;
-
-                    foreach (Item item in items)
+                    if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
                     {
-                        if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
-                        {
-                            found = true;
+                        found = true;
 
-                        }
+                        Console.WriteLine("Product exists in the list, how many do you want?");
+                        int amount = int.Parse(Console.ReadLine());
 
-                        if (found)
+                        if (item.Quantity >= amount)
                         {
-                            Console.WriteLine($"Quantity available: {item.Quantity}, and the price per item is {item.Price}");
-                            break;
+                            Console.WriteLine($"Product exists and the quantity is sufficient and the price is {item.Price * amount}");
+                            RemoveItemFromFile(item.Name, amount);
                         }
                         else
                         {
-                            Console.WriteLine("Product is not avbailable");
-                            break;
+                            Console.WriteLine("Not enough in stock");
                         }
+
+                        break;
                     }
-                
                 }
 
-                else if (option == 4)
+                if (!found)
+                {
+                    Console.WriteLine("Product is not available");
+                }
+
+            }
+
+            else if (option == 3)
+            {
+                Console.Write("Product name: ");
+                string prompt = Console.ReadLine();
+
+                bool found = false;
+
+                foreach (Item item in items)
+                {
+                    if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
+                    {
+                        found = true;
+
+                        Console.WriteLine($"Quantity available: {item.Quantity}, and the price per item is {item.Price}");
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    Console.WriteLine("Product is not available");
+                }
+            }
+
+
+            else if (option == 4)
                 {
                     foreach (Item item in items)
                     {
