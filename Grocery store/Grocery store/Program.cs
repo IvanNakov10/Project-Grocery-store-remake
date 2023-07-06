@@ -103,7 +103,31 @@ namespace Grocery_store
 
             else if (option == 3)
             {
+                Console.Write("Product name: ");
+                string prompt = Console.ReadLine();
 
+                bool found = false;
+
+                foreach (Item item in items)
+                {
+                    if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
+                    {
+                        found = true;
+
+                    }
+
+                    if (found)
+                    {
+                        Console.WriteLine($"Quantity available: {item.Quantity}, and the price per item is {item.Price}");
+                        break;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Product is not avbailable");
+                        break;
+                    }
+                }
             }
 
             else if (option == 4)
