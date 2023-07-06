@@ -83,6 +83,7 @@ namespace Grocery_store
                         if (item.Quantity >= amount)
                         {
                             Console.WriteLine($"Product exists and the quantity is sufficient and the price is {item.Price * amount}");
+                            RemoveItemFromFile(item.Name, amount);
                             break;
                         }
                         else
@@ -120,7 +121,6 @@ namespace Grocery_store
                     {
                         Console.WriteLine($"Quantity available: {item.Quantity}, and the price per item is {item.Price}");
                         break;
-
                     }
                     else
                     {
@@ -144,7 +144,32 @@ namespace Grocery_store
                 writer.WriteLine($"{productId},{name},{cayegory},{price},{quantity}");
             }
         }
+        static void RemoveItemFromFile(string productName, int quantity)
+        {
+            List<string> lines = File.ReadAllLines("Products.txt").ToList();
 
+            for (int i = 0; i < lines.Count; i++)
+            {
+                string[] itemInfo = lines[i].Split(',');
+
+                if (itemInfo.Length >= 5)
+                {
+                    string name = itemInfo[1];
+                    int availableQuantity = int.Parse(itemInfo[4]);
+
+                    if (name.Equals(productName, StringComparison.OrdinalIgnoreCase) && availableQuantity >= quantity)
+                    {
+                        availableQuantity -= quantity;
+                        itemInfo[4] = availableQuantity.ToString();
+
+                        lines[i] = string.Join(",", itemInfo);
+                        break;
+                    }
+                }
+            }
+
+            File.WriteAllLines("Products.txt", lines);
+        }
         static void WriteItems()
         {
             using (StreamReader reader = new StreamReader("Products.txt"))

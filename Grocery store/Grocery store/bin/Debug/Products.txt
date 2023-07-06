@@ -1,4 +1,4 @@
-13579,Pasta,Pantry,0.99,50
+13579,Pasta,Pantry,0.99,0
 24680,Bread,Bakery,2.99,30
 67890,Milk,Dairy,2.49,20
 97531,Apples,Fruits,1.99,50
