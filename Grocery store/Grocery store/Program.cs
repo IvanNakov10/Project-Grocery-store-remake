@@ -10,11 +10,28 @@ namespace Grocery_store
 {
     internal class Program
     {
-        List<Item> items = new List<Item>();
+        
 
-        void Main(string[] args)
+        static void Main(string[] args)
         {
-            Reader();
+            List<Item> items = new List<Item>();
+
+            StreamReader streamReader = new StreamReader("Products.txt");
+
+
+            string line = streamReader.ReadLine();
+
+            while (line != null)
+            {
+                List<string> itemInfo = line.Split(',').ToList();
+
+                Item current = new Item(int.Parse(itemInfo[0]), itemInfo[1], itemInfo[2], double.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
+
+                items.Add(current);
+
+                line = streamReader.ReadLine();
+            }
+            streamReader.Close();
 
             Console.WriteLine("Choose an option (1-4)");
             Console.WriteLine("1 - Add a new product to the store");
@@ -26,6 +43,8 @@ namespace Grocery_store
 
             if (option == 1)
             {
+                Console.WriteLine("Enter item information:");
+
 
             }
 
@@ -43,37 +62,16 @@ namespace Grocery_store
             {
 
             }
-
-            StreamReader streamWriter = new StreamReader("Products.txt");
-
-            using (streamWriter)
-            {
-                foreach (Item it in items)
-                {
-
-                }
-            }
-
-            void Reader()
-            {
-                StreamReader streamReader = new StreamReader("Products.txt");
-
-
-                string line = streamReader.ReadLine();
-
-                while (line != null)
-                {
-                    List<string> itemInfo = line.Split(',').ToList();
-
-                    Item current = new Item(int.Parse(itemInfo[0]), itemInfo[1], itemInfo[2], double.Parse(itemInfo[3]), int.Parse(itemInfo[4]));
-
-                    items.Add(current);
-
-                    line = streamReader.ReadLine();
-                }
-                streamReader.Close();
-            }
-
         }
+
+        static void promtWriter(int productId, string name, string cayegory, double price, int quantity)
+        {
+            using (StreamWriter writer = new StreamWriter("Products.txt"))
+            {
+                writer.WriteLine($"{productId},{name},{cayegory},{price},{quantity}");
+            }
+        }
+
+        
     }
 }
