@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 
 namespace Grocery_store
@@ -21,6 +25,7 @@ namespace Grocery_store
 
 
             string line = streamReader.ReadLine();
+       
 
             while (line != null)
             {
@@ -41,101 +46,109 @@ namespace Grocery_store
             Console.WriteLine("4 - See all items");
 
             int option = int.Parse(Console.ReadLine());
-
-            if (option == 1)
-            {
-                Console.WriteLine("Enter item information:");
-                Console.Write("ProductId: ");
-                int id = int.Parse(Console.ReadLine());
-                Console.Write("Product name: ");
-                string name = Console.ReadLine();
-                Console.Write("Product category: ");
-                string cat = Console.ReadLine();
-                Console.Write("Product price: ");
-                double pr = double.Parse(Console.ReadLine());
-                Console.Write("Product quantity: ");
-                int qu = int.Parse(Console.ReadLine());
-
-                PromtWriter(id, name, cat, pr, qu);
-            }
-
-            else if (option == 2)
-            {
-                Console.Write("Product name: ");
-                string prompt = Console.ReadLine();
-                
-                bool found = false;
-
-                foreach (Item item in items)
+            
+                if (option == 1)
                 {
-                    if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
+                    Console.WriteLine("Enter item information:");
+                    Console.Write("ProductId: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Write("Product name: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Product category: ");
+                    string cat = Console.ReadLine();
+                    Console.Write("Product price: ");
+                    double pr = double.Parse(Console.ReadLine());
+                    Console.Write("Product quantity: ");
+                    int qu = int.Parse(Console.ReadLine());
+
+                    PromtWriter(id, name, cat, pr, qu);
+
+                    
+                }
+
+                else if (option == 2)
+                {
+                    Console.Write("Product name: ");
+                    string prompt = Console.ReadLine();
+
+                    bool found = false;
+
+                    foreach (Item item in items)
                     {
-                        found = true;
-                        
+                        if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
+                        {
+                            found = true;
+
+                        }
+
+                        if (found)
+                        {
+                            Console.WriteLine("Product exists in the list, how many do you want?");
+                            int amount = int.Parse(Console.ReadLine());
+
+
+                            if (item.Quantity >= amount)
+                            {
+                                Console.WriteLine($"Product exists and the quantity is sufficient and the price is {item.Price * amount}");
+                                RemoveItemFromFile(item.Name, amount);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Not enogh in stock");
+                                break;
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Product is not avbailable");
+                            break;
+                        }
                     }
 
-                    if (found)
+                }
+
+                else if (option == 3)
+                {
+                    Console.Write("Product name: ");
+                    string prompt = Console.ReadLine();
+
+                    bool found = false;
+
+                    foreach (Item item in items)
                     {
-                        Console.WriteLine("Product exists in the list, how many do you want?");
-                        int amount = int.Parse(Console.ReadLine());
-
-
-                        if (item.Quantity >= amount)
+                        if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
                         {
-                            Console.WriteLine($"Product exists and the quantity is sufficient and the price is {item.Price * amount}");
-                            RemoveItemFromFile(item.Name, amount);
+                            found = true;
+
+                        }
+
+                        if (found)
+                        {
+                            Console.WriteLine($"Quantity available: {item.Quantity}, and the price per item is {item.Price}");
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("Not enogh in stock");
+                            Console.WriteLine("Product is not avbailable");
                             break;
                         }
-
                     }
-                    else
-                    {
-                        Console.WriteLine("Product is not avbailable");
-                        break;
-                    }
+                
                 }
-               
-            }
 
-            else if (option == 3)
-            {
-                Console.Write("Product name: ");
-                string prompt = Console.ReadLine();
-
-                bool found = false;
-
-                foreach (Item item in items)
+                else if (option == 4)
                 {
-                    if (item.Name.Equals(prompt, StringComparison.OrdinalIgnoreCase))
+                    foreach (Item item in items)
                     {
-                        found = true;
-
+                        Console.WriteLine($"Product ID: {item.ProductId}, Product Name: {item.Name}, Product Category: {item.Cayegory}, Product Price: {item.Price}, Product Quantity: {item.Quantity}");
                     }
 
-                    if (found)
-                    {
-                        Console.WriteLine($"Quantity available: {item.Quantity}, and the price per item is {item.Price}");
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Product is not avbailable");
-                        break;
-                    }
+
                 }
             }
-
-            else if (option == 4)
-            {
-
-                WriteItems();
-            }
-        }
+        
 
         static void PromtWriter(int productId, string name, string cayegory, double price, int quantity)
         {
@@ -169,19 +182,6 @@ namespace Grocery_store
             }
 
             File.WriteAllLines("Products.txt", lines);
-        }
-        static void WriteItems()
-        {
-            using (StreamReader reader = new StreamReader("Products.txt"))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                }
-            }
-
-               
         }
     }
 }
