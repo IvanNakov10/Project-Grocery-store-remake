@@ -9,3 +9,5 @@
 90876,Tomatoes,Vegetables,0.79,60
 45678,Orange Juice,Beverages,2.99,15
 1,pizza,bake,12,10
+123,pIzza,Bakery,1,90
+234,32,324,2323,23

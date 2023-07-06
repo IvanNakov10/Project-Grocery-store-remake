@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -71,6 +72,7 @@ namespace Grocery_store
             else if (option == 4)
             {
 
+                writeItems();
             }
         }
 
@@ -82,6 +84,18 @@ namespace Grocery_store
             }
         }
 
-        
+        static void writeItems()
+        {
+            using (StreamReader reader = new StreamReader("Products.txt"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+            }
+
+               
+        }
     }
 }
