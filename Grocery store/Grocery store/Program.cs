@@ -44,8 +44,14 @@ namespace Grocery_store
             if (option == 1)
             {
                 Console.WriteLine("Enter item information:");
+                
+                int id = int.Parse(Console.ReadLine());
+                string name = Console.ReadLine();
+                string cat = Console.ReadLine();
+                double pr = double.Parse(Console.ReadLine());
+                int qu = int.Parse(Console.ReadLine());
 
-
+                promtWriter(id, name, cat, pr, qu);
             }
 
             else if (option == 2)
