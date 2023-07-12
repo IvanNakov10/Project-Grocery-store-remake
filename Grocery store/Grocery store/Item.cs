@@ -29,5 +29,9 @@ namespace Grocery_store
         public string Cayegory { get => cayegory; set => cayegory = value; }
         public double Price { get => price; set => price = value; }
         public int Quantity { get => quantity; set => quantity = value; }
+
+       
     }
+
+
 }

@@ -1,10 +1,15 @@
+12345,Orange Juice,Beverages,2.99,15
+98765,Eggs,Dairy,1.79,40
+24680,Granola Bars,Snacks,3.49,20
+13579,Carrots,Produce,0.99,30
+86420,Salmon,Seafood,9.99,10
 13579,Pasta,Pantry,0.99,30
 24680,Bread,Bakery,2.99,30
-67890,Milk,Dairy,2.49,18
+67890,Milk,Dairy,2.49,20
 97531,Apples,Fruits,1.99,50
-12345,Eggs,Dairy,1.99,100
-23456,Rice,Pantry,3.99,40
-78901,Chicken,Meat,5.99,25
-54321,Yogurt,Dairy,1.49,30
-90876,Tomatoes,Vegetables,0.79,60
-45678,Orange Juice,Beverages,2.99,1512,Pizza,new,9,100
+86420,Cereal,Pantry,3.49,25
+75309,Chicken,Meat,5.99,15
+42013,Coffee,Beverages,4.99,40
+35791,Yogurt,Dairy,1.79,30
+90210,Tomatoes,Produce,0.99,4012,Diear,POpp,100,9
+12311,poop,poop,100,99
