@@ -41,18 +41,20 @@ namespace Grocery_store
             string exit = "";
             int option = 0;
 
-            while (exit.ToUpper() != "N5O")
+            while (exit.ToUpper() != "NO")
             {
+                Console.WriteLine("########################################");
                 Console.WriteLine("Choose an option (1-4)");
                 Console.WriteLine("1 - Add a new product to the store");
                 Console.WriteLine("2 - Buy an item");
                 Console.WriteLine("3 - Check availability");
                 Console.WriteLine("4 - See all items");
                 Console.WriteLine("5 - Exit");
-
+                Console.WriteLine("######################################## \n");
                 option = int.Parse(Console.ReadLine());
                 if (option == 1)
                 {
+                    Console.WriteLine("########################################");
                     Console.WriteLine("Enter item information:");
                     Console.Write("ProductId: ");
                     int id = int.Parse(Console.ReadLine());
@@ -69,6 +71,7 @@ namespace Grocery_store
                 }
                 else if (option == 2)
                 {
+                    Console.WriteLine("########################################");
                     Console.Write("Product name: ");
                     string prompt = Console.ReadLine();
 
@@ -105,6 +108,7 @@ namespace Grocery_store
                 }
                 else if (option == 3)
                 {
+                    Console.WriteLine("########################################");
                     Console.Write("Product name: ");
                     string prompt = Console.ReadLine();
 
@@ -128,14 +132,16 @@ namespace Grocery_store
                 }
                 else if (option == 4)
                 {
+                    Console.WriteLine("########################################");
                     foreach (Item item in items)
                     {
-                        Console.WriteLine($"Product ID: {item.ProductId}, Product Name: {item.Name}, Product Category: {item.Cayegory}, Product Price: {item.Price}, Product Quantity: {item.Quantity}");
+                        Console.WriteLine($"Product ID: {item.ProductId}, {item.Name}, Product Category: {item.Cayegory}, Product Price: {item.Price}, Product Quantity: {item.Quantity}");
                     }
 
                 }
                 else if (option == 5)
                 {
+                    Console.WriteLine("########################################");
                     Console.WriteLine("Exiting the program...");
                     break;
                 }
