@@ -11,6 +11,3 @@
 75309,Chicken,Meat,5.99,15
 42013,Coffee,Beverages,4.99,40
 35791,Yogurt,Dairy,1.79,30
-90210,Tomatoes,Produce,0.99,4012,Diear,POpp,100,9
-12311,poop,poop,100,99
-100010,Pizzza,pizzza,123,11
