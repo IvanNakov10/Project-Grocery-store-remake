@@ -158,7 +158,7 @@ namespace Grocery_store
         static void PromtWriter(int productId, string name, string category, double price, int quantity, List<Item> items)
         {
             Item newItem = new Item(productId, name, category, price, quantity);
-            items.Add(newItem); // Add the new item to the list
+            items.Add(newItem);
 
             using (StreamWriter writer = new StreamWriter("Products.txt", true))
             {
